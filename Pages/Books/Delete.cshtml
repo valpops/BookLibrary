@@ -1,0 +1,42 @@
+@page "{id:int}"
+@model BookLibrary.Pages.Books.DeleteModel
+@{
+    ViewData["Title"] = "Delete book";
+}
+
+<h1 class="mb-4">Delete this book?</h1>
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9">@Model.Book.Title</dd>
+
+            <dt class="col-sm-3">Author</dt>
+            <dd class="col-sm-9">@Model.Book.Author</dd>
+
+            <dt class="col-sm-3">Genre</dt>
+            <dd class="col-sm-9">@Model.Book.Genre</dd>
+
+            <dt class="col-sm-3">ISBN</dt>
+            <dd class="col-sm-9"><code>@Model.Book.Isbn</code></dd>
+
+            <dt class="col-sm-3">Published</dt>
+            <dd class="col-sm-9">@Model.Book.PublishedOn.ToString("d MMMM yyyy")</dd>
+
+            <dt class="col-sm-3">Pages</dt>
+            <dd class="col-sm-9">@Model.Book.PageCount</dd>
+
+            <dt class="col-sm-3">Price</dt>
+            <dd class="col-sm-9">@Model.Book.Price.ToString("C")</dd>
+        </dl>
+    </div>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Book.Id" />
+    <button type="submit" class="btn btn-danger">Delete book</button>
+    <a asp-page="./Index" class="btn btn-link">Keep it</a>
+</form>

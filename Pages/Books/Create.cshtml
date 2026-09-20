@@ -1,0 +1,30 @@
+@page
+@model BookLibrary.Pages.Books.CreateModel
+@{
+    ViewData["Title"] = "Add a book";
+}
+
+<h1 class="mb-4">Add a book</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            @* Rendering a partial resets the HTML field prefix, so without this
+               view-data the inputs would post as "Title" rather than "Book.Title"
+               and [BindProperty] Book would come back empty. *@
+            <partial name="_BookFormFields" model="Model.Book"
+                     view-data="@(new ViewDataDictionary(ViewData) { TemplateInfo = { HtmlFieldPrefix = nameof(Model.Book) } })" />
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Save book</button>
+                <a asp-page="./Index" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

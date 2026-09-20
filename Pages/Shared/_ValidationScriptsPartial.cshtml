@@ -1,0 +1,22 @@
+@* These three scripts are what turn the data-val-* attributes emitted by
+   AddFluentValidationClientsideAdapters() into live, in-browser validation.
+   Without them the form still validates correctly - just only after a round
+   trip to the server. *@
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.20.0/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@4.0.0/dist/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    // Bootstrap-flavoured styling for the validation states jQuery applies.
+    $(function () {
+        $('form').each(function () {
+            $(this).on('submit', function () {
+                $(this).find('.input-validation-error').addClass('is-invalid');
+            });
+        });
+
+        $(document).on('blur change', 'input, select, textarea', function () {
+            $(this).toggleClass('is-invalid', $(this).hasClass('input-validation-error'));
+        });
+    });
+</script>

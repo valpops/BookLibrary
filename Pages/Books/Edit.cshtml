@@ -1,0 +1,31 @@
+@page "{id:int}"
+@model BookLibrary.Pages.Books.EditModel
+@{
+    ViewData["Title"] = "Edit book";
+}
+
+<h1 class="mb-4">Edit book</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <input type="hidden" asp-for="Book.Id" />
+
+            @* Keeps the "Book." prefix on the rendered field names - see the
+               same note on Create.cshtml. *@
+            <partial name="_BookFormFields" model="Model.Book"
+                     view-data="@(new ViewDataDictionary(ViewData) { TemplateInfo = { HtmlFieldPrefix = nameof(Model.Book) } })" />
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <a asp-page="./Index" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

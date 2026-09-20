@@ -1,0 +1,15 @@
+@page
+@model BookLibrary.Pages.ErrorModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Something went wrong</h1>
+<p>The page couldn't be loaded. Try again, or head back to the library.</p>
+
+@if (Model.ShowRequestId)
+{
+    <p><strong>Request ID:</strong> <code>@Model.RequestId</code></p>
+}
+
+<a asp-page="/Books/Index" class="btn btn-primary">Back to books</a>

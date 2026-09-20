@@ -1,0 +1,27 @@
+.card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* The validation-summary tag helper always renders its container, adding
+   .validation-summary-valid when there's nothing to report. Without this rule
+   you'd get an empty red alert box sitting at the top of every clean form. */
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary-errors ul {
+    margin-bottom: 0;
+    padding-left: 1.2rem;
+}
+
+/* jQuery unobtrusive validation adds .input-validation-error to fields that
+   fail client-side; mirror Bootstrap's own invalid styling so client-side and
+   server-side errors look identical. */
+.input-validation-error {
+    border-color: var(--bs-form-invalid-border-color, #dc3545);
+}
+
+.input-validation-error:focus {
+    border-color: var(--bs-form-invalid-border-color, #dc3545);
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
